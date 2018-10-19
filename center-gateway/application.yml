@@ -7,7 +7,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8080/eureka/
-     
+
 zuul:
   routes:
     abk-core-service:
@@ -17,17 +17,12 @@ zuul:
     error:
       disable: true
   semaphore:
-    max-semaphores: 2000
-  host:
-    connect-timeout-millis: 60000
-    socket-timeout-millis: 60000
-    max-total-connections: 1000
-    max-per-route-connections: 100
+    max-semaphores: 10000
 
 ribbon:
-  MaxConnectionsPerHost: 2000
-  MaxTotalConnections: 2000
-  ReadTimeout: 30000
+  MaxConnectionsPerHost: 5
+  MaxTotalConnections: 10000
+  ReadTimeout: 120000
   ConnectTimeout: 30000
 
 hystrix:
@@ -36,6 +31,8 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 60000
+            timeoutInMilliseconds: 120000
         timeout:
           enabled: false
+
+fallback.isolation.semaphore.maxConcurrentRequests: 1000
