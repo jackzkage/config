@@ -20,7 +20,7 @@ zuul:
     max-semaphores: 10000
 
 ribbon:
-  MaxConnectionsPerHost: 2000
+  MaxConnectionsPerHost: 5
   MaxTotalConnections: 10000
   ReadTimeout: 120000
   ConnectTimeout: 30000
